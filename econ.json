@@ -1,0 +1,30 @@
+{
+    "minLoseRange": 35,
+    "maxLoseRange": 65,
+    "minStep": 900,
+    "rangeStep": 900,
+    "minLimit": {
+        "value": 20000,
+        "range": 20000
+    },
+    "maxLimit": {
+        "value": 60000,
+        "range": 20000
+    },
+    "eventChange": 10000,
+    "tax": 0.05,
+    "maxFinHelp": 100000,
+    "farm": {
+        "small": 1,
+        "big": 3,
+        "max": 5,
+        "price": 300000,
+        "arrestValue": 0.2
+    },
+    "buyLimit": 100000,
+    "depPriceChange": 1000000,
+    "priceChangeRange": 20000,
+    "marketPrice": 50000,
+    "artPrice": 500000,
+    "bigCapital": 1000000
+}
