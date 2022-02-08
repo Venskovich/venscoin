@@ -9,3 +9,7 @@ The Telegram fun bot, which is crypto exchange simulator bot. There are implemen
 - transactions
 - financial support fund
 - artgallery
+
+https://t.me/venscoinbot
+
+The bot was interesting for a month, so after all it became boring for chat members. Nevertheless, it got more than 22,000 command requests
