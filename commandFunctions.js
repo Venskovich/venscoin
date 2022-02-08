@@ -318,7 +318,7 @@ function art(econ, player, artCounter) {
 
     // Operating purchase
     player.finance -= econ.artPrice
-    player.gallery++
+    player.art++
 
     // Increasing artCounter to send the next painting after this purchase
     artCounter++

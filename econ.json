@@ -16,15 +16,15 @@
     "maxFinHelp": 100000,
     "farm": {
         "small": 1,
-        "big": 3,
+        "big": 2,
         "max": 5,
         "price": 300000,
-        "arrestValue": 0.2
+        "arrestValue": 0.5
     },
-    "buyLimit": 100000,
+    "buyLimit": 200000,
     "depPriceChange": 1000000,
     "priceChangeRange": 20000,
     "marketPrice": 50000,
-    "artPrice": 500000,
+    "artPrice": 300000,
     "bigCapital": 1000000
 }

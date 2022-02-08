@@ -148,9 +148,9 @@ function getPoorPlayers(players) {
     let poors = []
 
     // Pushing poor players
-    for (let i = 10; i < players.length; i++) {
+    for (let i = 5; i < players.length; i++) {
 
-        if (player[i]) {
+        if (players[i]) {
 
             let player = players[i]
             if (player.active) {
@@ -201,7 +201,7 @@ function financeHelp(market, players, econ) {
 
     // If there is none to give money, then end function execution and save fund money untill there will be someone to get this help
     if (poors.length === 0) {
-        return
+        return `None to receive financial help`
     }
 
     // Calculating sum to give money
@@ -209,7 +209,7 @@ function financeHelp(market, players, econ) {
 
     // If there is less than 1 dollar on a person, stop executing the function
     if (sumToGive < 1) {
-        return
+        return `None to receive financial help`
     }
 
     // Limit sumToGive

@@ -176,18 +176,22 @@ bot.on("message", msg => {
 
     }
 
+
+    // Variable of text message to return in message after operating
+    let reply = ""
+
     // Main bot commands
     if (text.includes(commands.buy)) {
 
-        sendMessage(bot, chatId, buy(bot, market, econ, text, player))
+        reply = buy(bot, market, econ, text, player)
 
     } else if (text.includes(commands.sell)) {
 
-        sendMessage(bot, chatId, sell(bot, market, econ, text, player))
+        reply = sell(bot, market, econ, text, player)
 
     } else if (text.includes(commands.mine)) {
 
-        sendMessage(bot, chatId, mine(market, player, econ))
+        reply = mine(market, player, econ)
 
     } else if (text.includes(commands.about)) {
 
@@ -202,56 +206,53 @@ bot.on("message", msg => {
             
         }
         
-        
-        sendMessage(bot, chatId, getUserInfo(players, market, econ, player))
+        // Writing message reply
+        reply = getUserInfo(players, market, econ, player)
 
     } else if (text.includes(commands.forbes)) {
 
-        sendMessage(bot, chatId, getForbes(market, players, econ))
+        reply = getForbes(market, players, econ)
 
     } else if (text.includes(commands.invest)) {
 
-        sendMessage(bot, chatId, invest(market, econ, text, player))
+        reply = invest(market, econ, text, player)
 
     } else if (text.includes(commands.give)) {
 
         // It is forbidden to make transaction from twink
         if (banlist.includes(user.id)) {
-            sendMessage(bot, chatId, `<a href="tg://user?id=${user.id}">${getName(user)}</a>, you are not allowed to give someone money`)
-            deleteMessages(bot, chatId, msgId, true)
-            return
+            reply = `<a href="tg://user?id=${user.id}">${getName(user)}</a>, you are not allowed to give someone money`
+        } else {
+            reply = give(market, players, msg, player)
         }
-
-        // If everything is okay, then execute the command
-        sendMessage(bot, chatId, give(market, players, msg, player))
 
     } else if (text.includes(commands.art)) {
 
         // Initializing the return of the function : message (as text) and photoPath if exists
-        let reply = art(econ, player, artCounter)
+        let artReply = art(econ, player, artCounter)
 
-        sendMessage(bot, chatId, reply.message)
+        sendMessage(bot, chatId, artReply.message)
 
         // If there is any path to photo, this means player has bought a photo
-        if (reply.photoPath) {
+        if (artReply.photoPath) {
 
-            bot.sendPhoto(chatId, reply.photoPath)
-            artCounter = reply.artCounter
+            bot.sendPhoto(chatId, artReply.photoPath)
+            artCounter = artReply.artCounter
             saveArtCounter(artCounter)
 
         }
 
     } else if (text.includes(commands.fund)) {
 
-        sendMessage(bot, chatId, getFund(market, players))
+        reply = getFund(market, players)
 
     } else if (text.includes(commands.readme)) {
 
-        sendMessage(bot, chatId, getReadme())
+        reply = getReadme()
 
     } else if (text.includes(commands.start)) {
 
-        sendMessage(bot, chatId, start())
+        reply = start()
 
     }
 
@@ -262,17 +263,11 @@ bot.on("message", msg => {
 
     // If a player plays the game outside the chat the bot was created for, then warn him to play venscoinbot there
     if (chatId != specialChatId) {
-
-        sendMessage(bot, chatId, `Play there: @nause121`)
-
-        // Saving data
-        stats++
-        savePlayers(players)
-        saveStats(stats)
-
-        return
-
+        reply += `\n\nPlay there: @nause121`
     }
+
+    // Sending message reply
+    sendMessage(bot, chatId, reply)
 
     // Deleting messages
     if (text.includes(commands.forbes) || text.includes(commands.readme)) {
@@ -304,9 +299,9 @@ bot.on("message", msg => {
 setTimeout(function () {
 
     updateMined(players)
-    sendMessageEverywhere(financeHelp(bot, market, players, econ))
+    sendMessageEverywhere(bot, market, financeHelp(market, players, econ))
     updateActive(players)
-    sendMessageEverywhere(arrestFarm(bot, players, econ))
+    sendMessageEverywhere(bot, market, arrestFarm(players, econ))
 
     // Saving changes
     savePlayers(players)
@@ -314,9 +309,9 @@ setTimeout(function () {
     setInterval(function () {
 
         updateMined(players)
-        sendMessageEverywhere(financeHelp(bot, market, players, econ))
+        sendMessageEverywhere(bot, market, financeHelp(market, players, econ))
         updateActive(players)
-        sendMessageEverywhere(arrestFarm(bot, players, econ))
+        sendMessageEverywhere(bot, market, arrestFarm(players, econ))
 
         // Saving changes
         savePlayers(players)
@@ -328,9 +323,9 @@ setTimeout(function () {
 setTimeout(function () {
 
     updateMined(players)
-    sendMessageEverywhere(financeHelp(bot, market, players, econ))
+    sendMessageEverywhere(bot, market, financeHelp(market, players, econ))
     updateActive(players)
-    sendMessageEverywhere(arrestFarm(bot, players, econ))
+    sendMessageEverywhere(bot, market, arrestFarm(players, econ))
 
     // Saving changes
     savePlayers(players)
@@ -338,9 +333,9 @@ setTimeout(function () {
     setInterval(function () {
 
         updateMined(players)
-        sendMessageEverywhere(financeHelp(bot, market, players, econ))
+        sendMessageEverywhere(bot, market, financeHelp(market, players, econ))
         updateActive(players)
-        sendMessageEverywhere(arrestFarm(bot, players, econ))
+        sendMessageEverywhere(bot, market, arrestFarm(players, econ))
 
         // Saving changes
         savePlayers(players)
