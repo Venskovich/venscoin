@@ -1,10 +1,11 @@
-# venscoin
+# venscoinbot (inactive)
 
-Hi there! VensCoin is crypto exchange simulator. There are implemented:
+The Telegram fun bot, which is crypto exchange simulator bot. There are implemented
 
 - mining
 - regularly changing market behavior
-- unexpected rises and falls
+- unexpected rises and falls of venscoin price
 - income tax 
 - transactions
 - financial support fund
+- artgallery
