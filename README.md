@@ -10,7 +10,7 @@ The Telegram fun bot, which is crypto exchange simulator bot. There are implemen
 - financial support fund
 - artgallery
 
-https://t.me/venscoinbot
+https://t.me/venscoinbot (inactive now)
 
 https://telegra.ph/venscoin-01-13 (readme gamepley)
 
